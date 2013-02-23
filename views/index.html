@@ -17,6 +17,15 @@
 		</tr>
 	</thead>
     <tbody>
+      <% locals.services.forEach(function(service) { %>
+        <tr id="service-<%= service.id %>">
+          <td class="updown"><span class="label label-success">Pending</span></td>
+          <td class="service_name"><a href="<%= service.url %>"><%= service.name %></td>
+            <td class="service-id">#<%= service.id %></td>
+            <td class="latency">Pending</td>
+            <td class="status"><span class="label label-success">Pending</span></td>
+        </tr>
+        <% }); %>
     </tbody>
 </table>
  
@@ -44,7 +53,7 @@
 <script id="service-row-template" type="text/x-handlebars-template">
     <tr id="service-{{id}}">
     	<td class="updown"><span class="label label-success">{{ updown }}</span></td>
-    	<td class="service_name"><a href="{{ service_location }}">{{ service_name }}</td>
+    	<td class="service_name"><a href="{{ url }}">{{ name }}</td>
     	<td class="service-id">#{{ id }}</td>
         <td class="latency">{{ latency }}</td>
         <td class="status"><span class="label label-success">{{ status }}</span></td>

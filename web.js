@@ -7,11 +7,14 @@ var express = require('express')
   , ping = require('./lib/ping')
   , db = require('./lib/db');
 
+
 app.configure(function() {
   app.set('views', __dirname + "/views");
   app.set('view engine', 'ejs');
   app.register('.html', require('ejs'));
   app.use(gzippo.staticGzip(path.join(__dirname, '/public')));
+
+  io.set('log level',1);
 
   db.connect(function() {
     ping.init();
@@ -19,7 +22,9 @@ app.configure(function() {
 });
 
 app.get('/', function(req,res) {
-  res.render('index.html');
+  res.render('index.html', {
+    services: ping.urls
+  });
 });
 
 var port = process.env.PORT || 5000;
@@ -33,9 +38,8 @@ io.sockets.on('connection', function(socket) {
   }, 5000);
 
   ping.serviceEvents.on('pingResults', function(data){
-    socket.emit('new:ping', data);
+    socket.emit('update:service', data);
     db.addPing(data, function(err,res) {
-      console.log('DONE!');
       if (err) throw (err);
     });
   });
@@ -44,8 +48,10 @@ io.sockets.on('connection', function(socket) {
     db.addService(data, function(err,res) {
 
       if (err) console.log('err');
+
       ping.init(function() {
-        socket.emit('confirm:service',data);
+        var toReturn = ping.urls[ping.urls.length - 1];
+        socket.emit('confirm:service', toReturn);
       });
     });
   });
