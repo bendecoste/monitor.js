@@ -2,8 +2,9 @@
   "name": "monitor-js",
   "version": "0.0.1",
   "dependencies": {
-    "express": "3.x",
+    "express": "2.5.10",
     "ejs": "*",
+    "socket.io": "*",
     "request": "*"
   },
   "engines": {
