@@ -23,18 +23,14 @@ app.listen(port, function() {
 });
 
 io.sockets.on('connection', function(socket) {
-  socket.emit('evt', { hello: 'world' });
-  socket.on('cli', function(data) {
-    console.log('data',data);
+  setInterval(function() {
+    ping.ping();}, 5000);
+
+  ping.serviceEvents.on('pingResults', function(data){
+    socket.emit('new:ping', data);
   });
    socket.on('add:service', function(data) {
     console.log('service!', data);
   });
 });
 
-setInterval(function() {
-  ping.ping();
-},5000);
-ping.serviceEvents.on('pingResults', function(data){
-  console.log('data',data);
-});
