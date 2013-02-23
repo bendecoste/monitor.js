@@ -17,20 +17,20 @@
  
 <!-- Modal -->
 <div id="add-service-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add-service-modal-label" aria-hidden="true">
+	<form action="javascript:void(0);">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Add a Service, We'll Monitor It</h3>
   </div>
   <div class="modal-body">
-  	<form>
   		<label for="service-name">Service Name</label>
-  		<input type="text" id="service-name" width="100%">
+  		<input type="text" name="service-name" id="service-name" width="100%">
   		<label for="service-location">Service Location</label>
-  		<input type="text" id="service-location" class="span3" width="100%">
-  	</form>
+  		<input type="text" name="service-location" id="service-location" class="span3" width="100%">
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
+    <button type="submit" class="btn btn-primary">Save changes</button>
   </div>
+  </form>
 </div>
