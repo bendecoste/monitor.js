@@ -11,10 +11,7 @@ app.configure(function() {
   app.use('/img', express.static(__dirname + '/public/img'));
 
   app.register('.html', require('ejs'));
-  // app.set('view options', {
-  //   layout: 'layout.html',
-  //   pageTitle: ''
-  // });
+ 
 });
 
 app.get('/', function(req,res) {
