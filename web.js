@@ -41,18 +41,12 @@ io.sockets.on('connection', function(socket) {
   });
 
    socket.on('add:service', function(data) {
-     console.log('adddddd');
     db.addService(data, function(err,res) {
 
       if (err) console.log('err');
-
-      console.log('get served');
-      db.getServices();
-
-      console.log('res',res);
-
-      // TODO: format
-      socket.emit('confirm:service',data);
+      ping.init(function() {
+        socket.emit('confirm:service',data);
+      });
     });
   });
 
