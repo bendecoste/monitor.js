@@ -29,16 +29,9 @@ io.sockets.on('connection', function(socket) {
   });
 });
 
-setTimeout(ping.ping, 100);
-ping.serviceEvents.on('serviceConnect', function(){
-  console.log('Service is UP!');
-});
-
-ping.serviceEvents.on('serviceDisconnect', function(error, response){
-  if(!error){
-    console.log('Service is down! Error:', response.statusCode);
-  }
-  else{
-    console.log('Service is down!');
-  }
+setInterval(function() {
+  ping.ping();
+},5000);
+ping.serviceEvents.on('pingResults', function(data){
+  console.log('data',data);
 });
