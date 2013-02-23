@@ -27,6 +27,9 @@ io.sockets.on('connection', function(socket) {
   socket.on('cli', function(data) {
     console.log('data',data);
   });
+   socket.on('add:service', function(data) {
+    console.log('service!', data);
+  });
 });
 
 setInterval(function() {
