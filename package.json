@@ -4,6 +4,7 @@
   "dependencies": {
     "express": "2.5.10",
     "ejs": "*",
+    "gzippo" : "*",
     "socket.io": "*",
     "request": "*"
   },
