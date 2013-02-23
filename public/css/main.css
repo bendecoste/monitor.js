@@ -1,14 +1,18 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
 
+#add-service {
+	margin-top: -30px;
+}
 
-
-
-
-
+#add-service-modal input {
+	width: 96%;
+}
 
 
 

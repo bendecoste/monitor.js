@@ -1,17 +1,14 @@
-var express = require('express');
-
-var app = express.createServer();
+var express = require('express')
+  , gzippo = require('gzippo')
+  , path 	 = require('path')
+  ,app = express.createServer();
 var io = require('socket.io').listen(app);
 
 app.configure(function() {
   app.set('views', __dirname + "/views");
   app.set('view engine', 'ejs');
-  app.use('/css', express.static(__dirname + '/public/css'));
-  app.use('/js', express.static(__dirname + '/public/js'));
-  app.use('/img', express.static(__dirname + '/public/img'));
-
   app.register('.html', require('ejs'));
- 
+  app.use(gzippo.staticGzip(path.join(__dirname, '/public')));
 });
 
 app.get('/', function(req,res) {
