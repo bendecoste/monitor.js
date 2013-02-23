@@ -3,8 +3,8 @@ var express = require('express')
   , gzippo = require('gzippo')
   , path 	 = require('path')
   , app  = express.createServer()
-	, io = require('socket.io').listen(app)
-	, ping = require('./lib/ping.js');
+  , io = require('socket.io').listen(app)
+  , ping = require('./lib/ping.js');
 
 app.configure(function() {
   app.set('views', __dirname + "/views");
