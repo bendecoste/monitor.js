@@ -17,6 +17,7 @@ app.configure(function() {
 });
 
 app.get('/', function(req,res) {
+    console.log('SERVED CONTENT');
   res.render('index.html');
 });
 
