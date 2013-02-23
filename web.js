@@ -34,8 +34,12 @@ io.sockets.on('connection', function(socket) {
     socket.emit('new:ping', data);
   });
 
-   socket.on('add:service', function(data) {
+  socket.on('add:service', function(data) {
     db.addService(data);
   });
+
+  ping.serviceEvents.on('serviceResults', function(data){
+    socket.emit('new:service', data);
+  });  
 });
 
