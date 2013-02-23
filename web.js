@@ -13,11 +13,12 @@ app.configure(function() {
   app.register('.html', require('ejs'));
   app.use(gzippo.staticGzip(path.join(__dirname, '/public')));
 
-  db.connect();
+  db.connect(function() {
+    ping.init();
+  });
 });
 
 app.get('/', function(req,res) {
-    console.log('SERVED CONTENT');
   res.render('index.html');
 });
 
@@ -28,14 +29,31 @@ app.listen(port, function() {
 
 io.sockets.on('connection', function(socket) {
   setInterval(function() {
-    ping.ping();}, 5000);
+    ping.ping();
+  }, 5000);
 
   ping.serviceEvents.on('pingResults', function(data){
     socket.emit('new:ping', data);
+    db.addPing(data, function(err,res) {
+      console.log('DONE!');
+      if (err) throw (err);
+    });
   });
 
-  socket.on('add:service', function(data) {
-    db.addService(data);
+   socket.on('add:service', function(data) {
+     console.log('adddddd');
+    db.addService(data, function(err,res) {
+
+      if (err) console.log('err');
+
+      console.log('get served');
+      db.getServices();
+
+      console.log('res',res);
+
+      // TODO: format
+      socket.emit('confirm:service',data);
+    });
   });
 
   ping.serviceEvents.on('serviceResults', function(data){
