@@ -30,9 +30,10 @@ io.sockets.on('connection', function(socket) {
   setInterval(function() {
     ping.ping();}, 5000);
 
-  // ping.serviceEvents.on('pingResults', function(data){
-  //   socket.emit('new:ping', data);
-  // });
+  ping.serviceEvents.on('pingResults', function(data){
+    socket.emit('new:ping', data);
+  });
+
    socket.on('add:service', function(data) {
     db.addService(data);
   });
