@@ -21,9 +21,9 @@
         <tr id="service-<%= service.id %>">
           <td class="updown"><span class="label label-success">Pending</span></td>
           <td class="service_name"><a href="<%= service.url %>"><%= service.name %></td>
-            <td class="service-id">#<%= service.id %></td>
-            <td class="latency">Pending</td>
-            <td class="status"><span class="label label-success">Pending</span></td>
+	        <td class="latency">Pending</td>
+	        <td class="status"><span class="label label-success">Pending</span></td>
+	        <td class="actions"><a class="btn btn-danger" href="#"><i class="icon icon-remove icon-white"></i></a></td> 
         </tr>
         <% }); %>
     </tbody>
@@ -57,5 +57,6 @@
     	<td class="service-id">#{{ id }}</td>
         <td class="latency">{{ latency }}</td>
         <td class="status"><span class="label label-success">{{ status }}</span></td>
+        <td class="actions"><a class="remove-service btn btn-danger" href="#"><i class="icon icon-remove icon-white"></i></a></td> 
     </tr>
 </script>
