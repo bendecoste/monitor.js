@@ -47,16 +47,16 @@ io.sockets.on('connection', function(socket) {
   });
 
 	socket.on('delete:service', function(data){
-		db.deleteService(data, function(err, res){
-			if(err){
-				console.log('err', err);
-			}
+      db.deleteService(data, function(err, res){
+        if(err){
+        	console.log('err', err);
+        }
 
-			ping.init(function(){
-				var toReturn = ping.urls[ping.urls.length -1];
-				socket.emit('confirm:service', toReturn);
-			});
-		}
+        ping.init(function(){
+        	var toReturn = ping.urls[ping.urls.length -1];
+        	socket.emit('confirm:service', toReturn);
+        });
+      });
 	});
 
   socket.on('add:service', function(data) {

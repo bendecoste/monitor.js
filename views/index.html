@@ -1,7 +1,7 @@
 
 <h2>Services</h2>
 <section id="menu" class="pull-right">
-	<a  href="#add-service-modal" role="button" class="btn btn-success" id="add-service" data-toggle="modal"><i class="icon icon-plus-sign icon-white"></i></a>
+	<a  href="#add-service-modal" data-toggle="modal" role="button" class="btn btn-success" id="add-service"><i class="icon icon-plus-sign icon-white"></i></a>
 </section>
 <br>
 
@@ -11,9 +11,9 @@
 		<tr>
 			<th>Status</th>
 			<th width="30%">Service</th>
-			<th>ID</th>
 			<th>Latency</th>
 			<th>Last Status</th>
+			<th width="15%">Actions</th>
 		</tr>
 	</thead>
     <tbody>
@@ -23,13 +23,21 @@
           <td class="service_name"><a href="<%= service.url %>"><%= service.name %></td>
 	        <td class="latency">Pending</td>
 	        <td class="status"><span class="label label-success">Pending</span></td>
-	        <td class="actions"><a class="btn btn-danger" href="#"><i class="icon icon-remove icon-white"></i></a></td> 
+	        <td class="actions">
+	        	<a class="measure-service btn btn-info" href="#measure-service-modal"><i class="icon icon-signal icon-white"></i></a>
+	        	        	
+        	<a class="measure-service btn btn-info" href="#measure-service-modal" data-toggle="modal" role="button" ><i class="icon icon-signal icon-white"></i></a>
+        	<!--
+        	<a class="edit-service btn btn-warning" href="#edit-service-modal" data-toggle="modal" role="button" ><i class="icon icon-edit icon-white"></i></a>
+        	-->
+        	
+	        </td> 
         </tr>
         <% }); %>
     </tbody>
 </table>
  
-<!-- Modal -->
+<!-- Modals -->
 <div id="add-service-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add-service-modal-label" aria-hidden="true">
 	<form action="javascript:void(0);">
   <div class="modal-header">
@@ -49,14 +57,54 @@
   </form>
 </div>
 
+<div id="edit-service-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add-service-modal-label" aria-hidden="true">
+	<form action="javascript:void(0);">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">You Added a Service, Now Change It</h3>
+  </div>
+  <div class="modal-body">
+  		<label for="service-name">Service Name</label>
+  		<input type="text" name="service-name" id="service-name" width="100%">
+  		<label for="service-location">Service Location</label>
+  		<input type="text" name="service-location" id="service-location" class="span3" width="100%">
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button type="submit" class="btn btn-primary">Save changes</button>
+  </div>
+  </form>
+</div>
+
+<div id="measure-service-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add-service-modal-label" aria-hidden="true">
+	<form action="javascript:void(0);">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">You Service, on a Cool Chart?</h3>
+  </div>
+  <div class="modal-body">
+  		<!-- PUT CHARTS AND SHIZNIT HERE -->
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+  </form>
+</div>
+
 <!-- Templates -->
 <script id="service-row-template" type="text/x-handlebars-template">
     <tr id="service-{{id}}">
     	<td class="updown"><span class="label label-success">{{ updown }}</span></td>
     	<td class="service_name"><a href="{{ url }}">{{ name }}</td>
-    	<td class="service-id">#{{ id }}</td>
         <td class="latency">{{ latency }}</td>
         <td class="status"><span class="label label-success">{{ status }}</span></td>
-        <td class="actions"><a class="remove-service btn btn-danger" href="#"><i class="icon icon-remove icon-white"></i></a></td> 
+        <td class="actions">
+        	<a class="remove-service btn btn-danger" href="#" data-toggle="modal" role="button" ><i class="icon icon-remove icon-white"></i></a>
+
+        	<a class="measure-service btn btn-info" href="#measure-service-modal" data-toggle="modal" role="button" ><i class="icon icon-signal icon-white"></i></a>
+        	        	<!--
+        	<a class="edit-service btn btn-warning" href="#edit-service-modal" data-toggle="modal" role="button" ><i class="icon icon-edit icon-white"></i></a>
+        	-->
+        </td> 
     </tr>
 </script>
