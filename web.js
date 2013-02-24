@@ -33,9 +33,11 @@ app.listen(port, function() {
 });
 
 io.sockets.on('connection', function(socket) {
+  ping.ping();
+
   setInterval(function() {
-    ping.ping();
-  }, 5000);
+  ping.ping();
+  }, 15000);
 
   ping.serviceEvents.on('pingResults', function(data){
     socket.emit('update:service', data);

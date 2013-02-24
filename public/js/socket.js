@@ -1,5 +1,9 @@
+
 // var socket = io.connect('http://ancient-spire-1353.herokuapp.com/');
-var socket = io.connect('http://ninja:5000');
+//var socket = io.connect('http://ninja:5000');
+
+var socket = io.connect('http://ancient-spire-1353.herokuapp.com/');
+var socket = io.connect('http://localhost:5000');
 socket.on('new:ping', function(data) {
 });
 
